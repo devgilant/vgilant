@@ -6,7 +6,9 @@
   "dependencies": {
     "amqp": "*",
     "body-parser": "1.10.x",
-    "express": "^4.10.3"
+    "express": "^4.10.3",
+    "konfig": "*",
+    "step": "0.0.5"
   },
   "author": {
     "name": "Inbar Shani",
