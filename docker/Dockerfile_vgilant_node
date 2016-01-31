@@ -1,0 +1,16 @@
+# base image
+FROM node:5.3-slim
+
+# proxy env
+# ENV HTTP_PROXY=$HTTP_PROXY \
+#	HTTPS_PROXY=$HTTPS_PROXY \
+#	http_proxy=$HTTP_PROXY \
+#	https_proxy=$HTTPS_PROXY
+
+# make sure all dependencies are installed
+COPY package.json /vgilant/
+RUN cd vgilant && \
+	npm install
+
+# copy the sophia code
+COPY . /vgilant/

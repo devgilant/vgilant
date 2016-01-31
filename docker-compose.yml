@@ -1,0 +1,11 @@
+vgilant_app:
+  build: .
+  dockerfile: ./docker/Dockerfile_vgilant_node
+  container_name: vgilant_app
+  environment:
+   NODE_ENV: 
+   VGILANT_APP: 
+  ports:
+   - "8080:8080"
+  working_dir: /vgilant
+  command: node app.js
