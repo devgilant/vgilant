@@ -52,16 +52,16 @@ var app = express();
 /**
  * Connect to MongoDB.
  */
-mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI);
-mongoose.connection.on('error', function() {
-  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+mongoose.connect(vgilant_config.MONGODB || vgilant_config.MONGOLAB_URI);
+mongoose.connection.on('error', function(err) {
+  console.log('MongoDB Connection Error. Please make sure that MongoDB is running:\n'+err);
   process.exit(1);
 });
 
 /**
  * Express configuration.
  */
-app.set('port', process.env.PORT || 3000);
+app.set('port', vgilant_config.WEB_APP_PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(compress());
@@ -84,7 +84,7 @@ app.use(session({
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
   store: new MongoStore({
-    url: process.env.MONGODB || process.env.MONGOLAB_URI,
+    url: vgilant_config.MONGODB || vgilant_config.MONGOLAB_URI,
     autoReconnect: true
   })
 }));

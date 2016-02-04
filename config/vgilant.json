@@ -1,6 +1,7 @@
 {
     "default": {
     	"WEB_APP_PORT": 8080,
-    	"WEB_APP_ROOT": "index.html"
+    	"WEB_APP_ROOT": "index.html",
+    	"MONGODB": "mongodb://192.168.99.100:27017"
     }
 }
