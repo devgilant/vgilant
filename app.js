@@ -62,18 +62,8 @@ mongoose.connection.on('error', function(err) {
  * Express configuration.
  */
 app.set('port', vgilant_config.WEB_APP_PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.use(compress());
-app.use(sass({
-  src: path.join(__dirname, 'static'),
-  dest: path.join(__dirname, 'static'),
-  debug: true,
-  sourceMap: true,
-  outputStyle: 'expanded'
-}));
 app.use(logger('dev'));
-app.use(favicon(path.join(__dirname, 'static', 'favicon.png')));
+app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
@@ -106,8 +96,11 @@ app.use(function(req, res, next) {
   }
   next();
 });
-app.use(express.static(path.join(__dirname, 'static'), { maxAge: 31557600000 }));
+app.use('/', express.static(path.join(__dirname, 'static'), { maxAge: 31557600000 }));
 
+// TBD: remove once all jade files are converted
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
 /**
  * Primary app routes.

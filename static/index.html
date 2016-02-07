@@ -1,8 +1,18 @@
 <html>
- <head>
-  <title>My Title</title>
- </head>
- <body>
-  <p>Hello World</p>
- </body>
+	<head>
+		<!-- Include the AngularJS library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js">
+		</script>
+		<!-- Application title -->
+		<title>Vgilant</title>
+	</head>
+	<body ng-app="vgilantApp">
+		<div ng-controller="MainController">
+			<p>Title is: {{ title }}</p>
+		</div>
+		<!-- Modules -->
+		<script src="./js/angular_app.js"></script>
+		<!-- Controllers -->
+		<script src="./js/Controllers/MainController.js"></script>
+	</body>
 </html>

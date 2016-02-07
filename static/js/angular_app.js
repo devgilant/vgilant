@@ -1,0 +1,1 @@
+var vgilantApp = angular.module("vgilantApp", []);

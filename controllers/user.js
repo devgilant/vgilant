@@ -4,6 +4,9 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
+var path = require('path');
+
+var accountHTMLDir = path.join(__dirname, '../static/html/account');
 
 /**
  * GET /login
@@ -13,9 +16,9 @@ exports.getLogin = function(req, res) {
   if (req.user) {
     return res.redirect('/');
   }
-  res.render('account/login', {
-    title: 'Login'
-  });
+  else
+    res.sendFile(path.join(accountHTMLDir, 'login.html'));
+    //res.render('account/login');
 };
 
 /**
