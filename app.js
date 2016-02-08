@@ -98,9 +98,9 @@ app.use(function(req, res, next) {
 });
 app.use('/', express.static(path.join(__dirname, 'static'), { maxAge: 31557600000 }));
 
-// TBD: remove once all jade files are converted
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+// Jade (HTML templates) view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 /**
  * Primary app routes.

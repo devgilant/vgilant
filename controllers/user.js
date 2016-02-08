@@ -17,8 +17,7 @@ exports.getLogin = function(req, res) {
     return res.redirect('/');
   }
   else
-    res.sendFile(path.join(accountHTMLDir, 'login.html'));
-    //res.render('account/login');
+    res.render('account/login');
 };
 
 /**
