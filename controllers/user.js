@@ -25,6 +25,7 @@ exports.getLogin = function(req, res) {
  * Sign in using email and password.
  */
 exports.postLogin = function(req, res, next) {
+  console.log("postLogin");
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password cannot be blank').notEmpty();
 

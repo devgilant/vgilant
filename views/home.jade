@@ -1,27 +1,38 @@
 extends layout
 
 block content
-  h1 Hackathon Starter
-  p.lead A boilerplate for Node.js web applications.
+  h1 Vgilant - Take the initiative
+  p.lead We will help you get the best offer for any service you like.
   hr
   .row
+    .col-sm-12
+      h2 Used to running after them?
+      p You know the story: each time you need a service (a loan, an insurance policy, even a new mobile provider), you go through calling each vendor, asking for their best offer, comparing appelse to oranges and eventually giving up and signing with the last offer.
+  .row
+    .col-sm-12
+      h2 Vgilant to the rescue!
     .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+      h2 Let them run after you!
+      p Just let us know what service you require, and we will get those offers streaming to you. A full list of relevant vendors, all possible discounts and customer clubs, at your fingertips.
       p
-        a.btn.btn-default(href='#', role='button') View details »
+        a.btn.btn-default(href='#', role='button') Vendors list »
     .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+      h2 Ask, compare, rinse and repeat.
+      p Easily compare all granfathered offers, select the top ones you like, and re-bid them against each other. Repeat until the vendors had met your terms, to your complete satisfaction.
       p
-        a.btn.btn-default(href='#', role='button') View details »
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details »
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details »
+        a.btn.btn-default(href='#', role='button') How it works »
+  .row
+    .col-sm-4
+    .col-sm-4
+      div(ng-controller="MainController")
+        if !user
+          p Login to Vgilant to get the best service
+          a.btn.btn-default(href='/login', role='button') Login
+        else
+          form.form-horizontal(method='POST')
+            .form-group
+              label.col-sm-3.control-label(for='email') Which service you require today:
+              .col-sm-7
+                input.form-control(type='text', name='askService', id='askService', placeholder='Ask for a Service', autofocus=true)
+
+    .col-sm-4

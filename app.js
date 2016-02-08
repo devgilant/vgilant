@@ -62,6 +62,14 @@ mongoose.connection.on('error', function(err) {
  * Express configuration.
  */
 app.set('port', vgilant_config.WEB_APP_PORT || 3000);
+app.use(compress());
+app.use(sass({
+  src: path.join(__dirname, 'static'),
+  dest: path.join(__dirname, 'static'),
+  debug: true,
+  sourceMap: true,
+  outputStyle: 'expanded'
+}));
 app.use(logger('dev'));
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 app.use(bodyParser.json());
@@ -96,7 +104,7 @@ app.use(function(req, res, next) {
   }
   next();
 });
-app.use('/', express.static(path.join(__dirname, 'static'), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, 'static'), { maxAge: 31557600000 }));
 
 // Jade (HTML templates) view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -159,20 +167,23 @@ app.post('/api/bitgo', apiController.postBitGo);
 /**
  * OAuth authentication routes. (Sign in)
  */
-app.get('/auth/instagram', passport.authenticate('instagram'));
-app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), function(req, res) {
+
+app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
-app.get('/auth/github', passport.authenticate('github'));
-app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
+
+ /*
+app.get('/auth/instagram', passport.authenticate('instagram'));
+app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+app.get('/auth/github', passport.authenticate('github'));
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
 app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -183,6 +194,7 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
+*/
 
 /**
  * OAuth authorization routes. (API examples)
