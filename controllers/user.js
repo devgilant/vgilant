@@ -6,8 +6,6 @@ var passport = require('passport');
 var User = require('../models/User');
 var path = require('path');
 
-var accountHTMLDir = path.join(__dirname, '../static/html/account');
-
 /**
  * GET /login
  * Login page.

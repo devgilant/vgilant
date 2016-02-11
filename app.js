@@ -38,6 +38,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var serviceController = require('./controllers/service');
 
 /**
  * API keys and Passport configuration.
@@ -90,7 +91,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(lusca({
-  csrf: true,
+  csrf: false,
   xframe: 'SAMEORIGIN',
   xssProtection: true
 }));
@@ -130,6 +131,13 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+
+/**
+ * Vgilant REST API routes.
+ */
+app.get('/rest/services', serviceController.getRESTServices);
+app.post('/rest/services', serviceController.postRESTServices);
+
 
 /**
  * API examples routes.
@@ -235,3 +243,4 @@ app.listen(vgilant_config.WEB_APP_PORT,  function () {
 });
 
 module.exports = app;
+

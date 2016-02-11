@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var serviceSchema = new Schema({
+var dataTypeSchema = new Schema({
   name: { type: String, unique: true },
-  category: String,
-  data_fields: [{type: Schema.Types.ObjectId, ref: ['DataType']}]
+  type: String
 });
 
 /**
@@ -26,4 +25,4 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 };
 */
 
-module.exports = mongoose.model('Service', serviceSchema);
+module.exports = mongoose.model('DataType', dataTypeSchema);
