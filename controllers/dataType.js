@@ -1,9 +1,9 @@
-var _ = require('lodash');
+  //var _ = require('lodash');
 //var async = require('async');
 //var crypto = require('crypto');
 //var nodemailer = require('nodemailer');
 //var passport = require('passport');
-var Service = require('../models/Service');
+var DataType = require('../models/DataType');
 //var path = require('path');
 
 function respondWithError(res, err){
@@ -17,22 +17,17 @@ function respondWithError(res, err){
  * GET /rest/services
  * Get a json of service documents.
  */
-exports.getRESTServices = function(req, res) {
+exports.getRESTDataTypes = function(req, res) {
   if (!req.user) {
     return res.redirect('/');
   }
   else
   {
-    Service
-      .find({})
-      .populate('data_fields')
-      .exec(function(err, services){
+    DataType.find({}, function(err, dataTypes){
       if (err)
         respondWithError(res, err);
       else
-      {
-        res.json(services);
-      }
+        res.json(dataTypes);
     });
   }
 };
@@ -41,22 +36,15 @@ exports.getRESTServices = function(req, res) {
  * POST /rest/services
  * Post a new service with name, type (out of enum) and a collection of data fields.
  */
-exports.postRESTServices = function(req, res) {
-  var service = new Service();
-  service.name = req.body.name;
-  service.category = req.body.category; // need to validate with enum
-  if (req.body.data_fields)  
-  {
-    if (_.isArray(req.body.data_fields))
-      service.data_fields = req.body.data_fields;
-    else // just one ref
-      service.data_fields = [req.body.data_fields];
-  }
+exports.postRESTDataTypes = function(req, res) {
+  var dataType = new DataType();
+  dataType.name = req.body.name;
+  dataType.type = req.body.type; // need to validate with enum
   // TODO: handle fields
-  service.save(function(err) {
+  dataType.save(function(err) {
       if (err)
         respondWithError(res, err);
       else
-        res.json({ message: 'Service created!' });
+        res.json({ message: 'Data type created!' });
   });
 }

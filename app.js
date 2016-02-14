@@ -39,6 +39,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var serviceController = require('./controllers/service');
+var dataTypeController = require('./controllers/dataType');
 
 /**
  * API keys and Passport configuration.
@@ -137,6 +138,8 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
  */
 app.get('/rest/services', serviceController.getRESTServices);
 app.post('/rest/services', serviceController.postRESTServices);
+app.get('/rest/dataTypes', dataTypeController.getRESTDataTypes);
+app.post('/rest/dataTypes', dataTypeController.postRESTDataTypes);
 
 
 /**
