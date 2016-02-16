@@ -22,17 +22,32 @@ block content
       p
         a.btn.btn-default(href='#', role='button') How it works »
   .row
-    .col-sm-4
-    .col-sm-4
-      div(ng-controller="MainController")
+  .row
+    hr
+  .row
+    .col-sm-2
+    .col-sm-8
+      div(ng-controller="ServiceController as ctrl")
         if !user
           p Login to Vgilant to get the best service
           a.btn.btn-default(href='/login', role='button') Login
         else
-          form.form-horizontal(method='POST')
-            .form-group
-              label.col-sm-3.control-label(for='email') Which service you require today:
-              .col-sm-7
-                input.form-control(type='text', name='askService', id='askService', placeholder='Ask for a Service', autofocus=true)
-
-    .col-sm-4
+          md-content.md-padding
+            form.form-horizontal(ng-submit="$event.preventDefault()")
+              .form-group
+                .col-sm-5
+                  label.control-label(for='askService') Which service do you require today:
+                .col-sm-7
+                  md-autocomplete(md-selected-item="ctrl.selectedItem", 
+                    md-search-text-change="ctrl.searchTextChange(ctrl.searchText)",
+                    md-search-text="ctrl.searchText",
+                    md-selected-item-change="ctrl.selectedItemChange(item)",
+                    md-items="item in ctrl.querySearch(ctrl.searchText)",
+                    md-item-text="item.display",
+                    md-min-length="0",
+                    placeholder="Select a service")
+                    md-item-template
+                      span(md-highlight-text="ctrl.searchText",md-highlight-flags="^i") {{item.display}}
+                    md-not-found No services matching "{{ctrl.searchText}}" were found.
+                      a(ng-click="ctrl.newState(ctrl.searchText)") Ask for a new one!
+    .col-sm-2

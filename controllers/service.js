@@ -52,7 +52,6 @@ exports.postRESTServices = function(req, res) {
     else // just one ref
       service.data_fields = [req.body.data_fields];
   }
-  // TODO: handle fields
   service.save(function(err) {
       if (err)
         respondWithError(res, err);

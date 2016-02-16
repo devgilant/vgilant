@@ -40,7 +40,6 @@ exports.postRESTDataTypes = function(req, res) {
   var dataType = new DataType();
   dataType.name = req.body.name;
   dataType.type = req.body.type; // need to validate with enum
-  // TODO: handle fields
   dataType.save(function(err) {
       if (err)
         respondWithError(res, err);
