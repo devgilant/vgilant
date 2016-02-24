@@ -1,6 +1,6 @@
-vgilantApp.controller('ServiceController', ServiceController);
+vgilantApp.controller('ServiceController', ['$scope', '$window', 'sharedDataService',ServiceController]);
 
-function ServiceController() {
+function ServiceController($scope, $window, sharedDataService) {
     var self = this;
     // list of `service` value/display objects
     self.services = [];
@@ -9,9 +9,11 @@ function ServiceController() {
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange = searchTextChange;
     self.newService = newService;
+    self.NewServiceName = sharedDataService.get('newServiceName');
 
-    function newService(service) {
-        alert("Sorry! creating a new service " + service + " is not yet supported!");
+    function newService() {
+        sharedDataService.set('newServiceName', self.searchText);
+        $window.location.href = '/addService';
     }
     // ******************************
     // Internal methods
@@ -51,7 +53,7 @@ function ServiceController() {
     function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
         return function filterFn(service) {
-            return (service.value.indexOf(lowercaseQuery) === 0);
+            return (service.value.indexOf(lowercaseQuery) >= 0);
         };
     }
 }

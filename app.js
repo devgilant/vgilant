@@ -116,6 +116,13 @@ app.set('view engine', 'jade');
  * Primary app routes.
  */
 app.get('/', homeController.index);
+/*
+ *  Service management
+ */
+app.get('/addService', serviceController.addService);
+/*
+ *  User management
+ */
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

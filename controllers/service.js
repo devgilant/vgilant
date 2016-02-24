@@ -59,3 +59,13 @@ exports.postRESTServices = function(req, res) {
         res.json({ message: 'Service created!' });
   });
 }
+
+/**
+ * GET /
+ * Add service page.
+ */
+exports.addService = function(req, res) {
+  res.render('services/add', {
+    title: 'Request New Service'
+  });
+};
