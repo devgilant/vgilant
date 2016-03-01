@@ -27,7 +27,7 @@ block content
                     md-item-template
                       span(md-highlight-text="ctrl.searchText",md-highlight-flags="^i") {{item.display}}
                     md-not-found 
-                      a(ng-click="ctrl.newService()") Ask for a new "{{ctrl.searchText}}" service!
+                      a(href="/addService?name={{ctrl.searchText}}") Ask for a new "{{ctrl.searchText}}" service!
     .col-sm-2  
   hr
   .row

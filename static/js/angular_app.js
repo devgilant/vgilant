@@ -1,1 +1,2 @@
-var vgilantApp = angular.module("vgilantApp", ['ngMaterial']);
+angular
+	.module('vgilantApp', ['ngMaterial']);

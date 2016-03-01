@@ -1,15 +1,25 @@
-vgilantApp.factory('sharedDataService', function() {
- var savedData = {}
- function set(key, value) {
-   savedData[key] = value;
- }
- function get(key) {
-  return savedData[key];
- }
+(function() {
+    'use strict';
 
- return {
-  set: set,
-  get: get
- }
+    angular
+        .module('app')
+        .factory('sharedDataService', sharedDataService);
 
-});
+    function sharedDataService() {
+        var savedData = {}
+
+        function set(key, value) {
+            savedData[key] = value;
+        }
+
+        function get(key) {
+            return savedData[key];
+        }
+
+        return {
+            id: new Date().getTime(),
+            set: set,
+            get: get
+        }
+    }
+})();
