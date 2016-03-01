@@ -8,7 +8,8 @@ html
     title #{title} - Vgilant
     link(rel='stylesheet', href='/css/main.css')
     // Angular Material Library
-    link(rel="stylesheet", href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css")    
+    link(rel="stylesheet", href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css")  
+    base(href="/")  
   body(ng-app='vgilantApp')
     include partials/header
 
@@ -36,8 +37,10 @@ html
     // Controllers
     script(src="/js/Controllers/MainController.js")
     script(src="/js/Controllers/ServiceController.js")
+    script(src="/js/Controllers/NewServiceController.js")
     // Services
     script(src="/js/Services/SharedDataService.js")
+    script(src="/js/Services/UrlParseService.js")
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID    
       script.

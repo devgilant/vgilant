@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('vgilantApp')
         .factory('sharedDataService', sharedDataService);
 
     function sharedDataService() {
